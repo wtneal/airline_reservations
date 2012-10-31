@@ -8,6 +8,8 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'airline_reservations.views.home', name='home'),
     url(r'^$', 'airline_reservations.views.airport_list'),
+    url(r'^posttest$', 'airline_reservations.views.post_test'),
+    url(r'^login$', 'airline_reservations.views.login'),
     # url(r'^airline_reservations/', include('airline_reservations.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
