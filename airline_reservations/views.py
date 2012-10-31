@@ -9,6 +9,10 @@ def airport_list(request):
     airports_list = Airport.objects.all()
     return render_to_response('test.html', locals())
 
+def home(request):
+	available_domestic_flights = getDomesticFlights()
+	return render_to_response('home.html', locals())
+
 def login(request):
     if request.POST:
         username = request.POST['user']
@@ -24,12 +28,6 @@ def login(request):
     return render_to_response('login.html', {},
                                   context_instance=RequestContext(request))
 
-def book_flight():
-    """Book the flights
-    if a post is received book the f
-    """
-    pass
-
 
 ######################
 # Helper Functions ###
@@ -40,3 +38,12 @@ def authenticate_customer(username, password):
     otherwise return false
     """
     return False
+
+def book_flight():
+    """Book the flights
+    if a post is received book the f
+    """
+    pass
+
+def getDomesticFlights():
+	return AvailableFlight.objects.all()

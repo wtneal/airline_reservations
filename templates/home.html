@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <title>Test</title>
+    <link rel=stylesheet href=style.css type=text/css media=all>
+</head>
+<body>
+    <ul>
+        {% for a in available_domestic_flights %}
+            <li>{{ a }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
