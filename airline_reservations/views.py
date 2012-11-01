@@ -13,6 +13,15 @@ def home(request):
 	available_domestic_flights = getDomesticFlights()
 	return render_to_response('home.html', locals())
 
+def ticket(request):
+	#customer_name = Customer.user_name //
+	#return render_to_response('ticket.html', locals())
+	
+	#customer_email = Customer.email
+	#return render_to_response('ticket.html', locals())
+	
+	#	
+
 def login(request):
     if request.POST:
         username = request.POST['user']
