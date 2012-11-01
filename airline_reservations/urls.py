@@ -6,7 +6,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'airline_reservations.views.home'),
-    url(r'^login$', 'airline_reservations.views.login'),
 
     # Admin
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

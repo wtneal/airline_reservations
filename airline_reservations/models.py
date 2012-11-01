@@ -35,19 +35,21 @@ class AvailableFlight(models.Model):
         return "From {0} To {1}".format(self.departure_airport, self.arrival_airport)
 
 class Customer(models.Model):
-	"""Registered users"""
-	user_email = models.CharField(max_length=50)
-	user_name = models.CharField(max_length=50)
-	
-	def __unicode__(self):
-		return "From {0} To {1}".format(self.user_email, self.user_name)
-		
+    """Registered users"""
+    email = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=128)
+
+    def __unicode__(self):
+        return "{1} <{0}>".format(self.email, self.name)
+
 class Booking(models.Model):
 	"""Customers' booked flights"""
 	customer = models.ForeignKey(Customer)
 	flight = models.ForeignKey(AvailableFlight)
-	
+
 	def __unicode__(self):
 		return "From {0] To {1}".format(self.customer, self.flight)
-		
-	
+
+
