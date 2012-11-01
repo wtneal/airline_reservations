@@ -1,5 +1,8 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
 from django.template import RequestContext
+
 from airline_reservations.models import *
 
 ######################
@@ -10,24 +13,30 @@ def airport_list(request):
     return render_to_response('test.html', locals())
 
 def home(request):
-	available_domestic_flights = getDomesticFlights()
-	return render_to_response('home.html', locals())
+    available_domestic_flights = get_available_flights(is_international=False)
+    available_international_flights = get_available_flights(is_international=True)
 
-def login(request):
-    if request.POST:
+    # Check the login
+    if request.POST and request.POST['user'] and request.POST['pword']:
         username = request.POST['user']
         password = request.POST['pword']
 
         # Log the user in and redirect
         if authenticate_customer(username, password):
-            return HttpResponseRedirect(reverse('polls.views.results', args=(p.id,)))
+            return HttpResponseRedirect(reverse('airline_reservations.views.home'))
         else:
-            return render_to_response('login.html', {'failed': True})
-                                  #context_instance=RequestContext(request))
+            failed = True
+            return render_to_response('home.html', locals(),
+                                       context_instance=RequestContext(request))
 
-    return render_to_response('login.html', {},
-                                  context_instance=RequestContext(request))
+    return render_to_response('home.html', locals(),
+                               context_instance=RequestContext(request))
 
+def book_ticket(request):
+    """handle the ticket booking page
+    the user must be logged in to access this page if they aren't send them to a login page
+    """
+    pass
 
 ######################
 # Helper Functions ###
@@ -37,6 +46,10 @@ def authenticate_customer(username, password):
     if the provided credentials match log the user in. return true
     otherwise return false
     """
+    customer = Customer.objects.filter(username=username, password=password)
+    if len(customer) == 1:
+        return True
+
     return False
 
 def book_flight():
@@ -45,5 +58,6 @@ def book_flight():
     """
     pass
 
-def getDomesticFlights():
-	return AvailableFlight.objects.all()
+def get_available_flights(is_international):
+	return AvailableFlight.objects.filter(is_international_flight=is_international)
+

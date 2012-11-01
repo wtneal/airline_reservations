@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <title>Customer Login</title>
+    <style>
+        input {
+            display:block;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action=/login method=post accept-charset=utf-8>
+        {% csrf_token %}
+        {% if failed %}
+            <p class=error>The password entered was incorrect. Try again.</p>
+        {% endif %}
+        <input type=text name=user id=user placeholder="User Name">
+        <input type=password name=pword id=pword placeholder=Password> 
+        <input type=submit value=login>
+    </form>
+</body>
+</html>

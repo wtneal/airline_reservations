@@ -2,14 +2,64 @@
 <html lang=en>
 <head>
     <meta charset=utf-8>
-    <title>Test</title>
-    <link rel=stylesheet href=style.css type=text/css media=all>
+    <title>Home</title>
+    <script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
 </head>
 <body>
-    <ul>
-        {% for a in available_domestic_flights %}
-            <li>{{ a }}</li>
-        {% endfor %}
-    </ul>
+    <div class=login-form>
+        <form action=/ method=post accept-charset=utf-8>
+            {% csrf_token %}
+            {% if failed %}
+                <p class=error>The password entered was incorrect. Try again.</p>
+            {% endif %}
+            <input type=text name=user id=user placeholder="User Name">
+            <input type=password name=pword id=pword placeholder=Password> 
+            <input type=submit value=login>
+        </form>
+    </div>
+    <div class=flight-listings>
+        <p class=table-label>Domestic Flights</p>
+        <table class=flights-table id=domestic-flights cellpadding=0 cellspacing=0>
+            <tr>
+                <th>Departure Date</th>
+                <th>Departure Airport</th>
+                <th>Arrival Date</th>
+                <th>Arrival Airport</th>
+            </tr>
+            {% if not available_domestic_flights %}
+                <tr><td colspan=4 class=no-flights>No available domestic flights found.</td></tr>
+            {% else %}
+                {% for f in available_domestic_flights %}
+                <tr>
+                    <td>{{ f.departure_time }}</td>
+                    <td>{{ f.departure_airport }}</td>
+                    <td>{{ f.arrival_time }}</td>
+                    <td>{{ f.arrival_airport }}</td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+        <p class=table-label>International Flights</p>
+        <table class=flights-table id=international-flights cellpadding=0 cellspacing=0>
+            <tr>
+                <th>Departure Date</th>
+                <th>Departure Airport</th>
+                <th>Arrival Date</th>
+                <th>Arrival Airport</th>
+            </tr>
+            {% if not available_international_flights %}
+                <tr><td colspan=4 no-flights>No available international flights found.</td><tr>
+            {% else %}
+                {% for f in available_international_flights %}
+                <tr>
+                    <td>{{ f.departure_time }}</td>
+                    <td>{{ f.departure_airport }}</td>
+                    <td>{{ f.arrival_time }}</td>
+                    <td>{{ f.arrival_airport }}</td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+    </div>
 </body>
 </html>
