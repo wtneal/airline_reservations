@@ -32,6 +32,16 @@ def home(request):
     return render_to_response('home.html', locals(),
                                context_instance=RequestContext(request))
 
+def ticket(request):
+	#customer_name = Customer.user_name //
+	#return render_to_response('ticket.html', locals())
+
+	#customer_email = Customer.email
+	#return render_to_response('ticket.html', locals())
+
+	#
+
+
 def book_ticket(request):
     """handle the ticket booking page
     the user must be logged in to access this page if they aren't send them to a login page
