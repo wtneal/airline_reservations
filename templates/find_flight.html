@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang=en>
+<head>
+    <meta charset=utf-8 />
+    <title>Find Flight</title>
+</head>
+<body>
+    <label>
+        From
+        <select name=from id=from>
+            <option value>Select One</option>            
+            {% for airport in airports %}
+            <option value={{ airport.id }}>{{ airport }}</option>            
+            {% endfor %}
+        </select>
+    </label>
+    <label>
+        To
+        <select name=to id=to>
+            <option value>Select One</option>            
+            {% for airport in airports %}
+            <option value={{ airport.id }}>{{ airport }}</option>            
+            {% endfor %}
+        </select>
+    </label>
+    <label>
+        Booking Date
+        <input type=text name=booking_date id=booking-date>
+    </label>
+    <label>
+        Class
+        <select name=adults id=adults>
+            <option value>Select One</option>            
+            {% for clas in classes %}
+            <option value={{ class.id }}>{{ class }}</option>            
+            {% endfor %}
+        </select>
+    </label>
+    <label>
+        Adults (12+)
+        <select name=adults id=adults>
+            <option value=1>1</option>    
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+        </select>
+    </label>
+    <label>
+        Children (2-11)
+        <select name=children id=children>
+            <option value=0>0</option>    
+            <option value=1>1</option>    
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+        </select>
+    </label>
+    <label>
+        Infants (Under 2)
+        <select name=infants id=infants>
+            <option value=0>0</option>    
+            <option value=1>1</option>    
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+        </select>
+    </label>
+</body>
+</html>

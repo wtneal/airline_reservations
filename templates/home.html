@@ -39,11 +39,7 @@
                     <td>{{ f.departure_airport }}</td>
                     <td>{{ f.arrival_time }}</td>
                     <td>{{ f.arrival_airport }}</td>
-                    <td>
-                    {% if request.session.user %}
-                        <a href="/bookflight/{{ f.id }}">Book Flight</a>
-                    {% endif %}
-                    </td>
+                    <td> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
 
                 </tr>
                 {% endfor %}
@@ -66,11 +62,7 @@
                     <td>{{ f.departure_airport }}</td>
                     <td>{{ f.arrival_time }}</td>
                     <td>{{ f.arrival_airport }}</td>
-                    <td>
-                    {% if request.session.user %}
-                        <a href="/bookflight/{{ f.id }}">Book Flight</a>
-                    {% endif %}
-                    </td>
+                    <td> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
                 </tr>
                 {% endfor %}
             {% endif %}

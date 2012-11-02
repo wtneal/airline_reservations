@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang=en>
+<head>
+    <meta charset=utf-8 />
+    <title>Book Flight</title>
+</head>
+<body>
+    {{ flight }}
+    <label>
+        Adults (12+)
+        <select name=adults id=adults>
+            <option value=1>1</option>    
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+        </select>
+    </label>
+    <label>
+        Children (2-11)
+        <select name=children id=children>
+            <option value=0>0</option>    
+            <option value=1>1</option>    
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+        </select>
+    </label>
+    <label>
+        Infants (Under 2)
+        <select name=infants id=infants>
+            <option value=0>0</option>    
+            <option value=1>1</option>    
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+        </select>
+    </label>
+    {% if m %}
+        {{ m }}
+    {% endif %}
+</body>
+</html>
