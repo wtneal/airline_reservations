@@ -22,7 +22,10 @@ def home(request):
         password = request.POST['pword']
 
         # Log the user in and redirect
-        if authenticate_customer(username, password):
+        customer = authenticate_customer(username, password)
+        if customer:
+            # Set the session details
+            request.session['user'] = customer
             return HttpResponseRedirect(reverse('airline_reservations.views.home'))
         else:
             failed = True
@@ -38,8 +41,7 @@ def ticket(request):
 
 	#customer_email = Customer.email
 	#return render_to_response('ticket.html', locals())
-
-	#
+    pass
 
 
 def book_ticket(request):
@@ -58,16 +60,14 @@ def authenticate_customer(username, password):
     """
     customer = Customer.objects.filter(username=username, password=password)
     if len(customer) == 1:
-        return True
-
-    return False
+        return customer[0]
+    return None
 
 def book_flight():
     """Book the flights
-    if a post is received book the f
+    if a post is received book the flight
     """
     pass
 
 def get_available_flights(is_international):
-	return AvailableFlight.objects.filter(is_international_flight=is_international)
-
+    return AvailableFlight.objects.filter(is_international_flight=is_international)

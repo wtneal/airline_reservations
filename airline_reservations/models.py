@@ -50,6 +50,6 @@ class Booking(models.Model):
 	flight = models.ForeignKey(AvailableFlight)
 
 	def __unicode__(self):
-		return "From {0] To {1}".format(self.customer, self.flight)
+		return "From {0} To {1}".format(self.customer, self.flight)
 
 
