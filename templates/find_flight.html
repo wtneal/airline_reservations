@@ -5,12 +5,15 @@
     <title>Find Flight</title>
 </head>
 <body>
+<form action=/bookflight method=get accept-charset=utf-8>
     <label>
         From
         <select name=from id=from>
             <option value>Select One</option>            
             {% for airport in airports %}
-            <option value={{ airport.id }}>{{ airport }}</option>            
+            <option value={{ airport.id }} {% if request.GET.from == airport.id|stringformat:"s" %}selected{% endif %} >
+                {{ airport }}
+            </option>            
             {% endfor %}
         </select>
     </label>
@@ -19,23 +22,36 @@
         <select name=to id=to>
             <option value>Select One</option>            
             {% for airport in airports %}
-            <option value={{ airport.id }}>{{ airport }}</option>            
+            <option value={{ airport.id }} {% if request.GET.to == airport.id|stringformat:"s" %}selected{% endif %} >
+                {{ airport }}
+            </option>            
             {% endfor %}
         </select>
     </label>
     <label>
         Booking Date
-        <input type=text name=booking_date id=booking-date>
+        <input type=text name=booking_date id=booking-date value={{ request.GET.booking_date }}>
     </label>
     <label>
         Class
-        <select name=adults id=adults>
+        <select name=seat_type id=seat-type>
             <option value>Select One</option>            
-            {% for clas in classes %}
-            <option value={{ class.id }}>{{ class }}</option>            
+            {% for class in classes %}
+            <option value={{ class.id }} {% if request.GET.seat_type == class.id|stringformat:"s" %}selected{% endif %} >
+                {{ class }}
+            </option>            
             {% endfor %}
         </select>
     </label>
+    <input type=submit name=find id=find value="Find Flight">
+</form>
+{% if flights %}
+<form action=/bookflight method=get accept-charset=utf-8>
+    <ul>
+    {% for flight in flights %}
+        <li><label><input type=radio name=flight id=flight-{{ flight.id }} value={{ flight.id }}> {{ flight }}</label></li>
+    {% endfor %}
+    </ul>
     <label>
         Adults (12+)
         <select name=adults id=adults>
@@ -67,5 +83,8 @@
             <option value=4>4</option>
         </select>
     </label>
+    <input type=submit name=book id=book value="Book Flight" />
+</form>
+{% endif %}
 </body>
 </html>

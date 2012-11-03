@@ -29,10 +29,11 @@ class AvailableFlight(models.Model):
     arrival_time = models.DateTimeField()
     is_international_flight = models.BooleanField()
     seat_type = models.ForeignKey(SeatType)
-    price = models.DecimalField(decimal_places=2, max_digits=5)
+    price = models.DecimalField(decimal_places=2, max_digits=8)
 
     def __unicode__(self):
         return "From {0} To {1}".format(self.departure_airport, self.arrival_airport)
+
 
 class Customer(models.Model):
     """Registered users"""
@@ -44,12 +45,16 @@ class Customer(models.Model):
     def __unicode__(self):
         return "{1} <{0}>".format(self.email, self.name)
 
-class Booking(models.Model):
-	"""Customers' booked flights"""
-	customer = models.ForeignKey(Customer)
-	flight = models.ForeignKey(AvailableFlight)
 
-	def __unicode__(self):
-		return "From {0} To {1}".format(self.customer, self.flight)
+class Booking(models.Model):
+    """Customers' booked flights"""
+    customer = models.ForeignKey(Customer)
+    flight = models.ForeignKey(AvailableFlight)
+    adults = models.IntegerField()
+    children = models.IntegerField()
+    infants = models.IntegerField()
+
+    def __unicode__(self):
+        return "From {0} To {1}".format(self.customer, self.flight)
 
 
