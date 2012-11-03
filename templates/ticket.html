@@ -6,15 +6,43 @@
     <link rel=stylesheet href=style.css type=text/css media=all>
 </head>
 <body>
-    <ul>
-        {% for a in customer_name %}
-            <li>{{ a }}</li>
-        {% endfor %}
-    </ul>
-	<ul>
-        {% for a in customer_email %}
-            <li>{{ a }}</li>
-        {% endfor %}
-    </ul>
+	<div class=print-ticket>
+		<p class=ticket-label>Ticket Information</p>
+		<table class=ticket-table cellpadding=0 cellspacing=0>
+        	{% for c in customer_info %}
+			<tr>
+				<td>Name</td>
+                <td>{{ c.name }}</td>
+			</tr>
+            <tr>	
+            	<td>Email</td>
+				<td>{{ c.email }}</td>
+			</tr>
+            {% endfor %}
+            {% for f in flight_info %}
+            <tr>	
+            	<td>Seats Booked</td>
+				<td>{{ f.seats }}</td>
+			</tr>
+             <tr>	
+            	<td>Departure Airport</td>
+				<td>{{ f.departure_airport }}</td>
+			</tr>
+             <tr>	
+            	<td>Departure Time</td>
+				<td>{{ f.departure_time }}</td>
+			</tr>
+             <tr>	
+            	<td>Arrival Airport</td>
+				<td>{{ f.arrival_airport }}</td>
+			</tr>
+             <tr>	
+            	<td>Arrival Time</td>
+				<td>{{ f.arrival_time }}</td>
+			</tr>
+            {% endfor %}
+
+		</table>	
+	</div>
 </body>
 </html>

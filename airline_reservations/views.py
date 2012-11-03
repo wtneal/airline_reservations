@@ -36,13 +36,14 @@ def home(request):
     return render_to_response('home.html', locals(),
                                context_instance=RequestContext(request))
 
-def ticket(request):
-	#customer_name = Customer.user_name //
+def ticket(request, customer_id):
+	#customer_info = get_customer(Customer, pk = customer_id)
 	#return render_to_response('ticket.html', locals())
 
-	#customer_email = Customer.email
+	#flight_info = get_flight()
 	#return render_to_response('ticket.html', locals())
-    pass
+
+	#
 
 def login(request):
     """login page for the user"""
