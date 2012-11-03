@@ -8,10 +8,6 @@ from airline_reservations.models import *
 ######################
 # Views ##############
 ######################
-def airport_list(request):
-    airports_list = Airport.objects.all()
-    return render_to_response('test.html', locals())
-
 def home(request):
     available_domestic_flights = get_available_flights(is_international=False)
     available_international_flights = get_available_flights(is_international=True)
@@ -37,13 +33,11 @@ def home(request):
                                context_instance=RequestContext(request))
 
 def ticket(request, customer_id):
-	#customer_info = get_customer(Customer, pk = customer_id)
-	#return render_to_response('ticket.html', locals())
-
-	#flight_info = get_flight()
-	#return render_to_response('ticket.html', locals())
-
-	#
+    #customer_info = get_customer(Customer, pk = customer_id)
+    #return render_to_response('ticket.html', locals())
+    #flight_info = get_flight()
+    #return render_to_response('ticket.html', locals())
+    pass
 
 def login(request):
     """login page for the user"""
@@ -84,7 +78,7 @@ def book_ticket(request, flight_id=None):
         return HttpResponseRedirect(reverse('airline_reservations.views.login'))
 
     if request.POST:
-        result = book_flight(request.POST)
+        result = book_flight(request.session.get('user'), request.POST)
         if result:
             return HttpResponseRedirect(reverse('airline_reservations.views.ticket', args=(result,)))
         else:
@@ -117,14 +111,12 @@ def authenticate_customer(username, password):
         return customer[0]
     return None
 
-def book_flight(form_fields):
+def book_flight(customer, form_fields):
     """Book the flights
     returns id of the booked flight if the booking was successful
     """
     if form_fields.get('flight'):
-        flight = form_fields.get('flight')
-    if form_fields.get('customer'):
-        customer = form_fields.get('customer')
+        flight = AvailableFlight.objects.get(id=form_fields.get('flight'))
     if form_fields.get('adults'):
         adults = form_fields.get('adults')
     if form_fields.get('children'):

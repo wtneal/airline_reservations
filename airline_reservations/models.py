@@ -55,7 +55,5 @@ class Booking(models.Model):
     children = models.IntegerField()
     infants = models.IntegerField()
 
-	def __unicode__(self):
-		return "From {0} To {1}".format(self.customer, self.flight)
-
-
+    def __unicode__(self):
+        return "From {0} To {1}".format(self.customer, self.flight)

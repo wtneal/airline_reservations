@@ -46,7 +46,8 @@
     <input type=submit name=find id=find value="Find Flight">
 </form>
 {% if flights %}
-<form action=/bookflight method=get accept-charset=utf-8>
+<form action=/bookflight method=post accept-charset=utf-8>
+    {% csrf_token %}
     <ul>
     {% for flight in flights %}
         <li><label><input type=radio name=flight id=flight-{{ flight.id }} value={{ flight.id }}> {{ flight }}</label></li>
