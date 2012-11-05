@@ -1,3 +1,22 @@
 table {
-    border: 1px solid #000;
+border: 1px solid #000;
+}
+
+body {
+background: #333333;
+color: #515050;
+font-family: arial,helvetica,sans-serif;
+font-size: 80%;
+}
+
+#page {
+margin: 0 auto;
+min-height: 100%;
+max-width: 1060px;
+min-width: 954px;
+position: relative;
+}
+
+div {
+display: block;
 }

@@ -7,8 +7,10 @@
     <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
 </head>
 <body>
+	<div id="page">
     {% if request.session.user %}
         <p>Logged in as {{ request.session.user.name }}.</p>
+		<p><a href="/logout/">Log out?</a></p>
     {% else %}
     <div class=login-form>
         <form action=/ method=post accept-charset=utf-8>
@@ -69,5 +71,6 @@
             {% endif %}
         </table>
     </div>
+	</div>
 </body>
 </html>
