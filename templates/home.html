@@ -26,7 +26,7 @@
     {% endif %}
     <div class=flight-listings>
         <p class=table-label>Domestic Flights</p>
-        <table class=flights-table id=domestic-flights cellpadding=0 cellspacing=0>
+        <table class=flights-table id=flights cellpadding=0 cellspacing=0>
             <tr>
                 <th>Departure Date</th>
                 <th>Departure Airport</th>
@@ -39,9 +39,9 @@
             {% else %}
                 {% for f in available_domestic_flights %}
                 <tr>
-                    <td>{{ f.departure_time }}</td>
+                    <td class=table-gray>{{ f.departure_time }}</td>
                     <td>{{ f.departure_airport }}</td>
-                    <td>{{ f.arrival_time }}</td>
+                    <td class=table-gray>{{ f.arrival_time }}</td>
                     <td>{{ f.arrival_airport }}</td>
 					<td>${{ f.price }}</td>
                     <td> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
@@ -50,8 +50,8 @@
                 {% endfor %}
             {% endif %}
         </table>
-        <p class=table-label>International Flights</p>
-        <table class=flights-table id=international-flights cellpadding=0 cellspacing=0>
+		<p class=table-label>International Flights</p>
+        <table class=flights-table id=flights cellpadding=0 cellspacing=0>
             <tr>
                 <th>Departure Date</th>
                 <th>Departure Airport</th>
@@ -64,9 +64,9 @@
             {% else %}
                 {% for f in available_international_flights %}
                 <tr>
-                    <td>{{ f.departure_time }}</td>
+                    <td class=table-gray>{{ f.departure_time }}</td>
                     <td>{{ f.departure_airport }}</td>
-                    <td>{{ f.arrival_time }}</td>
+                    <td class=table-gray>{{ f.arrival_time }}</td>
                     <td>{{ f.arrival_airport }}</td>
 					<td>${{ f.price }}</td>
                     <td> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
