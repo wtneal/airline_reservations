@@ -32,12 +32,11 @@ def home(request):
     return render_to_response('home.html', locals(),
                                context_instance=RequestContext(request))
 
-def ticket(request, customer_id):
-    #customer_info = get_customer(Customer, pk = customer_id)
-    #return render_to_response('ticket.html', locals())
-    #flight_info = get_flight()
-    #return render_to_response('ticket.html', locals())
-    pass
+def ticket(request, booking_id):
+	
+    ticket_info = Booking.objects.get(id = booking_id)
+    return render_to_response('ticket.html', locals())
+   
 
 def login(request):
     """login page for the user"""

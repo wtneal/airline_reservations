@@ -9,38 +9,50 @@
 	<div class=print-ticket>
 		<p class=ticket-label>Ticket Information</p>
 		<table class=ticket-table cellpadding=0 cellspacing=0>
-        	{% for c in customer_info %}
 			<tr>
 				<td>Name</td>
-                <td>{{ c.name }}</td>
+                <td>{{ ticket_info.customer.name }}</td>
 			</tr>
             <tr>	
             	<td>Email</td>
-				<td>{{ c.email }}</td>
+				<td>{{ ticket_info.customer.email }}</td>
 			</tr>
-            {% endfor %}
-            {% for f in flight_info %}
             <tr>	
             	<td>Seats Booked</td>
-				<td>{{ f.seats }}</td>
+				<td>{{ticket_info.flight.seat_type }}</td>
 			</tr>
-             <tr>	
+			<tr>
+				<td>Ticket Number</td>
+				<td>{{ticket_info.customer.id }}</td>
+			</tr>
+			<tr>
+				<td>Adults</td>
+				<td>{{ticket_info.customer.adults }}</td>
+			</tr>
+			<tr>
+				<td>Children</td>
+				<td>{{ticket_info.customer.children }}</td>
+			</tr>
+			<tr>
+				<td>Infants</td>
+				<td>{{ticket_info.customer.infants }}</td>
+			</tr>
+            <tr>	
             	<td>Departure Airport</td>
-				<td>{{ f.departure_airport }}</td>
+				<td>{{ ticket_info.flight.departure_airport }}</td>
 			</tr>
              <tr>	
             	<td>Departure Time</td>
-				<td>{{ f.departure_time }}</td>
+				<td>{{ ticket_info.flight.departure_time }}</td>
 			</tr>
              <tr>	
             	<td>Arrival Airport</td>
-				<td>{{ f.arrival_airport }}</td>
+				<td>{{ ticket_info.flight.arrival_airport }}</td>
 			</tr>
              <tr>	
             	<td>Arrival Time</td>
-				<td>{{ f.arrival_time }}</td>
+				<td>{{ ticket_info.flight.arrival_time }}</td>
 			</tr>
-            {% endfor %}
 
 		</table>	
 	</div>
