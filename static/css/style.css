@@ -19,4 +19,22 @@ position: relative;
 
 div {
 display: block;
+background-color: white;
+margin-bottom: 9px;
+padding-bottom: 10px;
+border-width: 5px 1px 1px 1px;
+border-color: #CAE4F2;
+border-style: solid;
+}
+
+.flights-table {
+border: 1px solid black;
+width: 100%;
+border: 1px solid black;
+}
+
+th, td {
+margin: 1px;
+text-align: center;
+border: 1px solid black;
 }
