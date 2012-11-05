@@ -4,14 +4,14 @@ from django.contrib import admin
 # Uncomment the next two lines to enable the admin:
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^/?$', 'airline_reservations.views.home'),
-    url(r'^bookflight/?$', 'airline_reservations.views.book_ticket'),
-    url(r'^bookflight/(?P<flight_id>\d+)/?$', 'airline_reservations.views.book_ticket'),
-    url(r'^login/?$', 'airline_reservations.views.login'),
-    url(r'^logout/?$', 'airline_reservations.views.logout'),
-	url(r'^ticket/?$', 'airline_reservations.views.ticket'),
-	url(r'^ticket/(?P<booking_id>\d+)/?$', 'airline_reservations.views.ticket'),
+urlpatterns = patterns('airline_reservations.views',
+    url(r'^/?$', 'home'),
+    url(r'^bookflight/?$', 'book_ticket'),
+    url(r'^bookflight/(?P<flight_id>\d+)/?$', 'book_ticket'),
+    url(r'^login/?$', 'login'),
+    url(r'^logout/?$', 'logout'),
+	url(r'^ticket/(?P<booking_id>\d+)/?$', 'ticket'),
+	url(r'^register/?$', 'registerUser'),
 
     # Admin
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

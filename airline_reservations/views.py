@@ -8,7 +8,7 @@ from airline_reservations.models import *
 ######################
 # Views ##############
 ######################
-def home(request):
+def home(request, reg=False):
     available_domestic_flights = get_available_flights(is_international=False)
     available_international_flights = get_available_flights(is_international=True)
     request.session.set_expiry(600)     # expire after 10 min of inactivity
@@ -102,6 +102,19 @@ def book_ticket(request, flight_id=None):
         classes = SeatType.objects.all()
         return render_to_response('find_flight.html', locals(), context_instance=RequestContext(request))
 
+def registerUser(request):
+	if request.POST:
+	
+		try:
+			user = register(request.POST)
+			reg = True
+			return HttpResponseRedirect(reverse('airline_reservations.views.home', args=(reg)))		
+			#return render_to_response('home.html', locals(), context_instance=RequestContext(request))
+		except ValueError:
+			failed = True
+		
+	return render_to_response('register.html', locals(), context_instance=RequestContext(request))
+		
 ######################
 # Helper Functions ###
 ######################
@@ -130,6 +143,28 @@ def book_flight(customer, form_fields):
     b = Booking(customer=customer, flight=flight, adults=adults, children=children, infants=infants)
     b.save()
     return b.id
+
+def register(form_fields):
+	"""New User Registration """
+	if form_fields.get('name'):
+		name = form_fields.get('name')
+	else:
+		raise ValueError
+	if form_fields.get('email'):
+		email = form_fields.get('email')
+	else:
+		raise ValueError
+	if form_fields.get('username'):
+		username = form_fields.get('username')
+	else:
+		raise ValueError
+	if form_fields.get('password'):
+		password = form_fields.get('password')
+	else:
+		raise ValueError
+	customer = Customer(name=name, email=email, username=username, password=password)
+	customer.save()
+	return customer
 
 def get_available_flights(is_international, get_vars=None):
 # Verify that the data is valid

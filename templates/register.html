@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <title>User Register</title>
+    <script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
+    <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
+</head>
+
+<body>
+	<div id="register">
+		{% if failed) %}
+			<p> Please enter your info! </p>
+		{$ endif %}
+		<form action=/register method=post accept-charset=utf-8>
+			
+			<input type=text name=name id=name placeholder="Name">
+			<input type=text name=email id=email placeholder="Email">
+            <input type=text name=user id=user placeholder="User Name">
+            <input type=text name=pword id=pword placeholder=Password> 
+			
+            <input type=submit value=login>
+		</form>
+	</div>
+</body>
+</html>

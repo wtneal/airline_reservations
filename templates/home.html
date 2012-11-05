@@ -8,6 +8,10 @@
 </head>
 <body>
 	<div id="page">
+	{% if reg == True %)
+		<p> Thanks for registering! </P>
+	{% endif %}
+	
     {% if request.session.user %}
         <p>Logged in as {{ request.session.user.name }}.</p>
 		<p><a href="/logout/">Log out?</a></p>
