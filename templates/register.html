@@ -8,18 +8,33 @@
 </head>
 
 <body>
+	<h1> New User Registration </h1>
 	<div id="register">
+		
 		{% if failed %}
-			<p> Please enter your info! </p>
-		{$ endif %}
+			<p class=register-error> Please enter your info! </p>
+		{% endif %}
 		<form action=/register method=post accept-charset=utf-8>
+		{% csrf_token %}
+			<label>
+			Enter Name: <input type=text name=name id=name placeholder="Name">
+			</label>
 			
-			<input type=text name=name id=name placeholder="Name">
-			<input type=text name=email id=email placeholder="Email">
-            <input type=text name=user id=user placeholder="User Name">
-            <input type=text name=pword id=pword placeholder=Password> 
+			<label>
+			Enter Email: <input type=text name=email id=email placeholder="Email">
+			</label>
 			
+			<label>
+            Enter Username: <input type=text name=username id=username placeholder="User Name">
+			</label>
+			
+			<label>
+            Enter Password: <input type=text name=password id=password placeholder="Password"> 
+			</label>
+			
+			<label>
             <input type=submit value=login>
+			</label>
 		</form>
 	</div>
 </body>
