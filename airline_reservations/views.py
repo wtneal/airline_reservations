@@ -65,6 +65,11 @@ def login(request):
     return render_to_response('login.html', locals(),
                                context_instance=RequestContext(request))
 
+def logout(request):
+    """log the user out and redirect to the home page"""
+    request.session.clear()
+    return HttpResponseRedirect(reverse('airline_reservations.views.home'))
+
 
 def book_ticket(request, flight_id=None):
     """handle the ticket booking page
