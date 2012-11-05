@@ -8,7 +8,7 @@ from airline_reservations.models import *
 ######################
 # Views ##############
 ######################
-def home(request, reg):
+def home(request, reg = None):
     available_domestic_flights = get_available_flights(is_international=False)
     available_international_flights = get_available_flights(is_international=True)
     request.session.set_expiry(600)     # expire after 10 min of inactivity
@@ -108,7 +108,7 @@ def registerUser(request):
 		try:
 			user = register(request.POST)
 			reg = 1
-			return HttpResponseRedirect(reverse('home', args=(reg,)))		
+			return HttpResponseRedirect(reverse('airline_reservation.views.home', args=(reg,)))		
 			#return render_to_response('home.html', locals(), context_instance=RequestContext(request))
 		except ValueError:
 			failed = True
