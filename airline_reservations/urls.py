@@ -13,6 +13,7 @@ urlpatterns = patterns('airline_reservations.views',
     url(r'^logout/?$', 'logout'),
 	url(r'^ticket/(?P<booking_id>\d+)/?$', 'ticket'),
 	url(r'^register/?$', 'registerUser'),
+	#url(r'^confirm/?$', 'confirm'),
 
     # Admin
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
