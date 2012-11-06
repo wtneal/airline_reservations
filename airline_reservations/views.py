@@ -116,16 +116,18 @@ def registerUser(request):
 			#return render_to_response('home.html', locals(), context_instance=RequestContext(request))
 		except ValueError:
 			failed = True
-		return HttpResponseRedirect(reverse('airline_reservation.views.home'))
+		return HttpResponseRedirect(reverse('airline_reservation.views.confirm'))
 	return render_to_response('register.html', locals(), context_instance=RequestContext(request))
 
 def confirm(request):
 	
 	
-	#if request.POST:
+	if request.POST:
 	#	username = register(request.POST)
-	#	return HttpResponseRedirect(reverse('airlines_reservation.views.home', args=(username,)))
-	pass
+		return HttpResponseRedirect(reverse('airlines_reservation.views.home'))
+	else:
+		failed = True
+	return render_to_response('confirm.html', locals(), context_instance=RequestContext(request))
 	
 	
 ######################

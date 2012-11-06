@@ -27,7 +27,13 @@
             <input type=submit value=login>
         </form>
     </div>
-    {% endif %}
+	<div class=register-form>
+        <form action=/register method=post accept-charset=utf-8>
+			{% csrf_token %}
+				<input type=submit value=Register>
+        </form>
+    </div> 
+	{% endif %}
     <div class=flight-listings>
         <p class=table-label>Domestic Flights</p>
         <table class=flights-table id=flights cellpadding=0 cellspacing=0>

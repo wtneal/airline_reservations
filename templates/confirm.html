@@ -8,5 +8,11 @@
 </head>
 <body>
 	<p class=confirm>You are now a registered user </p>
+	<div class=confirm-home>
+		 <form action=/ method=post accept-charset=utf-8>
+			{% csrf_token %}
+            <input type=submit value="Search Flights">
+        </form>
+	
 </body>
 </html>
