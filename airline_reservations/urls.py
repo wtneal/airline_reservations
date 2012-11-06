@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('airline_reservations.views',
     url(r'^/?$', 'home'),
-	url(r'^(?P<reg>\d+)/?$', 'home'),
+	#url(r'^(?P<reg>\d+)/?$', 'home'),
     url(r'^bookflight/?$', 'book_ticket'),
     url(r'^bookflight/(?P<flight_id>\d+)/?$', 'book_ticket'),
     url(r'^login/?$', 'login'),
