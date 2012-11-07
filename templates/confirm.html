@@ -9,14 +9,14 @@
 <body>
 	<div class=confirm-home>
 	{% if request.session.user %}
-		<p class=confirm>You are now a registered user <b>{{ request.session.user.name }}</b>.</p>
+		<p class=confirm>Welcome! You are now a registered user <b>{{ request.session.user.name }}</b>.</p>
 		<form action=/ method=post accept-charset=utf-8>
 			{% csrf_token %}
             <input type=submit value="Search Flights">
         </form>	
 	{% else %}
 		<p class=confirm>Please register. </p>
-		<form action=/ method=post accept-charset=utf-8>
+		<form action=/register method=post accept-charset=utf-8>
 			{% csrf_token %}
             <input type=submit value="Register">
         </form>
