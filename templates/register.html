@@ -5,12 +5,14 @@
     <title>User Register</title>
     <script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
     <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
+	<a href="/">
+	<h1 class=logo>Django Travel</h1>
+	</a>
 </head>
 
 <body>
-	<h1> New User Registration </h1>
 	<div id="register">
-		
+		<h2> New User Registration </h2>
 		{% if failed %}
 			<p class=register-error> Please enter your info! </p>
 		{% endif %}
@@ -19,21 +21,17 @@
 			<label>
 			Enter Name: <input type=text name=name id=name placeholder="Name">
 			</label>
-			
 			<label>
 			Enter Email: <input type=text name=email id=email placeholder="Email">
 			</label>
-			
 			<label>
-            Enter Username: <input type=text name=username id=username placeholder="User Name">
+			Enter Username: <input type=text name=username id=username placeholder="User Name">
 			</label>
-			
 			<label>
-            Enter Password: <input type=text name=password id=password placeholder="Password"> 
+			Enter Password: <input type=text name=password id=password placeholder="Password"> 
 			</label>
-			
 			<label>
-            <input type=submit value=Register>
+			<input type=submit value=Register>
 			</label>
 		</form>
 	</div>
