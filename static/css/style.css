@@ -94,5 +94,7 @@ color: white;
 font-weight: bold;
 text-decoration: underline;
 border-style: solid;
+border-width: medium;
+border-color: #DDDDDD;
 
 }
