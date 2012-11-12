@@ -3,21 +3,38 @@
 <head>
     <meta charset=utf-8 />
     <title>Book Flight</title>
+	<script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
+    <link rel=stylesheet href={{ STATIC_URL }}css/bookstyle.css type=text/css media=all>
 </head>
 <body>
-    {{ flight }}
+	<div id=page>
+	<form action=/bookflight method=post accept-charset=utf-8>
+	{% csrf_token %}
+	<input type=hidden name=flight value={{ flight.id }}>
+	<p class=table-label>Flight Booking</p>
+	<table class=flights-table id=flights cellpadding=0 cellspacing=0>
+    <tr>
+	<th>From:{{ flight.departure_airport }} </br>at {{flight.departure_time}} </th>
+	<th><img src="{{ STATIC_URL }}images/plane.png" alt="Plane" height="50" width="51"></th>
+	<th>To:{{flight.arrival_airport}} </br>at {{flight.arrival_time}} </th>
+	</tr>
+
+	<tr>
+	<td class=table-gray>
     <label>
         Adults (12+)
         <select name=adults id=adults>
-            <option value=1>1</option>    
+            <option value=0>0</option>
+			<option selected value=1>1</option>    
             <option value=2>2</option>
             <option value=3>3</option>
             <option value=4>4</option>
             <option value=5>5</option>
             <option value=6>6</option>
         </select>
-    </label>
-    <label>
+    </label></td>
+    <td>
+	<label>
         Children (2-11)
         <select name=children id=children>
             <option value=0>0</option>    
@@ -26,8 +43,9 @@
             <option value=3>3</option>
             <option value=4>4</option>
         </select>
-    </label>
-    <label>
+    </label></td>
+    <td class=table-gray>
+	<label>
         Infants (Under 2)
         <select name=infants id=infants>
             <option value=0>0</option>    
@@ -36,7 +54,11 @@
             <option value=3>3</option>
             <option value=4>4</option>
         </select>
-    </label>
-    <input type=submit name=book id=book value="Book Flight">
+    </label></td>
+	</tr>
+	</table>
+    <align=center><input type=submit name=book id=book value="Book Flight"></align>
+	</form>
+	</div>
 </body>
 </html>

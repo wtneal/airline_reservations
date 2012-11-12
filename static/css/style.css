@@ -2,6 +2,8 @@ body {
 background: #333;
 font-family: arial,helvetica,sans-serif;
 font-size: 80%;
+
+list-style-type: none;
 }
 
 #page {
@@ -10,6 +12,16 @@ min-height: 100%;
 max-width: 1060px;
 min-width: 954px;
 position: relative;
+list-style-type: none;
+}
+
+#page2 {
+margin: 0 auto;
+min-height: 100%;
+max-width: 1060px;
+min-width: 954px;
+position: relative;
+text-align: right;
 }
 
 div {
@@ -24,6 +36,7 @@ border-style: solid;
 
 .flight-listings {
 padding: 4px;
+text-align: left;
 }
 .table-label {
 font-size: 20px;
@@ -32,10 +45,19 @@ color: #666;
 font-weight: bold;
 }
 
+.flight-list{
+list-style: none;
+}
+
 .flights-table {
 border: 1px solid #AAA;
 width: 100%;
 table-layout: fixed;
+}
+
+.print-ticket{
+background-color: #E1E1E1;
+
 }
 
 .table-gray {

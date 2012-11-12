@@ -3,11 +3,18 @@
 <head>
     <meta charset=utf-8 />
     <title>Find Flight</title>
+	<script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
+    <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
 </head>
 <body>
+<div class=page>
+<p class=table-label>Find a Flight</p>
 <form action=/bookflight method=get accept-charset=utf-8>
-    <label>
-        From
+    <table class=flights-table id=flights cellpadding=0 cellspacing=0>
+	<tr>
+	<td class=table-gray>
+	<label>
+        From:
         <select name=from id=from>
             <option value>Select One</option>            
             {% for airport in airports %}
@@ -18,7 +25,7 @@
         </select>
     </label>
     <label>
-        To
+        To:
         <select name=to id=to>
             <option value>Select One</option>            
             {% for airport in airports %}
@@ -29,11 +36,11 @@
         </select>
     </label>
     <label>
-        Booking Date
+        Booking Date:
         <input type=text name=booking_date id=booking-date value={{ request.GET.booking_date }}>
     </label>
     <label>
-        Class
+        Class:
         <select name=seat_type id=seat-type>
             <option value>Select One</option>            
             {% for class in classes %}
@@ -48,7 +55,7 @@
 {% if flights %}
 <form action=/bookflight method=post accept-charset=utf-8>
     {% csrf_token %}
-    <ul>
+    <ul class=flight-list>
     {% for flight in flights %}
         <li><label><input type=radio name=flight id=flight-{{ flight.id }} value={{ flight.id }}> {{ flight }}</label></li>
     {% endfor %}
@@ -85,7 +92,8 @@
         </select>
     </label>
     <input type=submit name=book id=book value="Book Flight" />
-</form>
+	</td></tr></table>
+	</form>
 {% endif %}
 </body>
 </html>
