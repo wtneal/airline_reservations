@@ -36,7 +36,7 @@ def ticket(request, booking_id):
 	
     ticket_info = Booking.objects.get(id = booking_id)
     return render_to_response('ticket.html', locals())
-   
+
 
 def login(request):
     """login page for the user"""
@@ -104,30 +104,21 @@ def book_ticket(request, flight_id=None):
 
 def registerUser(request):
 	if request.POST:
-	
+
 		try:
 			user = register(request.POST)
 			#reg = 1
 			request.session['user'] = user
 			return HttpResponseRedirect('confirm')
-			#return HttpResponseRedirect(reverse('airline_reservation.views.home', args=(reg,)))	
-			#return render_to_response('home.html', locals(), context_instance=RequestContext(request))
 		except ValueError:
 			failed = True
-		
+
 	return render_to_response('register.html', locals(), context_instance=RequestContext(request))
 
 def confirm(request):
-	
-	if request.POST:
-		#user = register(request.POST)
-		#request.session['user'] = user
-		return HttpResponseRedirect('home')
-	#else:
-		#failed = True
 	return render_to_response('confirm.html', locals(), context_instance=RequestContext(request))
-	
-	
+
+
 ######################
 # Helper Functions ###
 ######################
