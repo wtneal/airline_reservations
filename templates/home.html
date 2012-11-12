@@ -5,6 +5,10 @@
     <title>Home</title>
     <script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
     <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
+	<a href="/">
+	<h1 class=logo>Django Travel</h1>
+	</a>
+	
 </head>
 <body>
 	<div id="page">
@@ -17,7 +21,7 @@
 		<p><a href="/logout/">Log out?</a></p>
     {% else %}
     <div class=login-form>
-        <form action=/confirm method=post accept-charset=utf-8>
+        <form action=/ method=post accept-charset=utf-8>
             {% csrf_token %}
             {% if failed %}
                 <p class=error>The password entered was incorrect. Try again.</p>
@@ -43,6 +47,7 @@
                 <th>Arrival Date</th>
                 <th>Arrival Airport</th>
 				<th>Price</th>
+				<th>Book Flight</th>
             </tr>
             {% if not available_domestic_flights %}
                 <tr><td colspan=4 class=no-flights>No available domestic flights found.</td></tr>
@@ -54,7 +59,7 @@
                     <td class=table-gray>{{ f.arrival_time }}</td>
                     <td>{{ f.arrival_airport }}</td>
 					<td>${{ f.price }}</td>
-                    <td> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
+                    <td class=book-flight> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
 
                 </tr>
                 {% endfor %}
@@ -68,6 +73,7 @@
                 <th>Arrival Date</th>
                 <th>Arrival Airport</th>
 				<th>Price</th>
+				<th>Book Flight</th>
             </tr>
             {% if not available_international_flights %}
                 <tr><td colspan=4 no-flights>No available international flights found.</td><tr>
@@ -79,7 +85,7 @@
                     <td class=table-gray>{{ f.arrival_time }}</td>
                     <td>{{ f.arrival_airport }}</td>
 					<td>${{ f.price }}</td>
-                    <td> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
+                    <td class=book-flight> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
                 </tr>
                 {% endfor %}
             {% endif %}

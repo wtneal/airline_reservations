@@ -82,3 +82,17 @@ padding-top: 5px;
 padding-bottom: 4px;
 font-weight: bold;
 }
+
+h1 {
+font-weight: bold;
+text-indent: 50px;
+color: white;
+
+}
+
+.book-flight{
+font-weight: bold;
+text-decoration: underline;
+border-style: solid;
+
+}
