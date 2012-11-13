@@ -3,55 +3,60 @@
 <head>
     <meta charset=utf-8>
     <title>Tickets</title>
-    <link rel=stylesheet href=style.css type=text/css media=all>
+    <script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
+    <link rel=stylesheet href=/static/css/style.css type=text/css media=all>
+
 </head>
 <body>
-	<div class=print-ticket>
-		<p class=ticket-label>Ticket Information</p>
-		<table class=ticket-table cellpadding=0 cellspacing=0>
+	<a href="/">
+	<h1 class=logo>Django Travel</h1>
+	</a>
+	<div id="page">
+		<p class=table-label>Ticket Information</p>
+		<table class=flights-table id=flights cellpadding=0 cellspacing=0>
 			<tr>
-				<td>Name</td>
-                <td>{{ ticket_info.customer.name }}</td>
+				<td class=table-gray>Name</td>
+                <td class=table-gray>{{ ticket_info.customer.name }}</td>
 			</tr>
             <tr>	
             	<td>Email</td>
 				<td>{{ ticket_info.customer.email }}</td>
 			</tr>
             <tr>	
-            	<td>Seats Booked</td>
-				<td>{{ticket_info.flight.seat_type }}</td>
+            	<td class=table-gray>Seats Booked</td>
+				<td class=table-gray>{{ticket_info.flight.seat_type }}</td>
 			</tr>
 			<tr>
 				<td>Ticket Number</td>
 				<td>{{ticket_info.customer.id }}</td>
 			</tr>
 			<tr>
-				<td>Adults</td>
-				<td>{{ticket_info.adults }}</td>
+				<td class=table-gray>Adults</td>
+				<td class=table-gray>{{ticket_info.adults }}</td>
 			</tr>
 			<tr>
 				<td>Children</td>
 				<td>{{ticket_info.children }}</td>
 			</tr>
 			<tr>
-				<td>Infants</td>
-				<td>{{ticket_info.infants }}</td>
+				<td class=table-gray>Infants</td>
+				<td class=table-gray>{{ticket_info.infants }}</td>
 			</tr>
             <tr>	
             	<td>Departure Airport</td>
 				<td>{{ ticket_info.flight.departure_airport }}</td>
 			</tr>
              <tr>	
-            	<td>Departure Time</td>
-				<td>{{ ticket_info.flight.departure_time }}</td>
+            	<td class=table-gray>Departure Time</td>
+				<td class=table-gray>{{ ticket_info.flight.departure_time }}</td>
 			</tr>
              <tr>	
             	<td>Arrival Airport</td>
 				<td>{{ ticket_info.flight.arrival_airport }}</td>
 			</tr>
              <tr>	
-            	<td>Arrival Time</td>
-				<td>{{ ticket_info.flight.arrival_time }}</td>
+            	<td class=table-gray>Arrival Time</td>
+				<td class=table-gray>{{ ticket_info.flight.arrival_time }}</td>
 			</tr>
 
 		</table>	

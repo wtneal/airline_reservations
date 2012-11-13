@@ -2,9 +2,19 @@ body {
 background: #333;
 font-family: arial,helvetica,sans-serif;
 font-size: 80%;
+list-style-type: none;
 }
 
 #page {
+margin: 0 auto;
+min-height: 100%;
+max-width: 1060px;
+min-width: 954px;
+position: relative;
+list-style-type: none;
+}
+
+#page2 {
 margin: 0 auto;
 min-height: 100%;
 max-width: 1060px;
@@ -24,18 +34,34 @@ border-style: solid;
 
 .flight-listings {
 padding: 4px;
+text-align: left;
 }
 .table-label {
 font-size: 20px;
 text-shadow: 2px 2px 5px #AAA;
 color: #666;
 font-weight: bold;
+text-align: center;
+}
+
+.flight-list{
+list-style: none;
 }
 
 .flights-table {
 border: 1px solid #AAA;
 width: 100%;
 table-layout: fixed;
+}
+.head-table {
+border: 1px solid #AAA;
+width: 100%;
+table-layout: fixed;
+}
+
+.print-ticket{
+background-color: #E1E1E1;
+
 }
 
 .table-gray {
@@ -49,10 +75,11 @@ background-color: #AAA;
 color: white;
 }
 
+
 th, td {
 padding: 4px;
 margin: 1px;
-text-align: center;
+
 }
 
 a {
@@ -81,4 +108,25 @@ font-size: 18px;
 padding-top: 5px;
 padding-bottom: 4px;
 font-weight: bold;
+}
+
+h1 {
+font-weight: bold;
+text-indent: 50px;
+color: white;
+}
+h3 {
+font-weight: bold;
+text-indent: 50px;
+color: white;
+
+}
+
+.book-flight{
+font-weight: bold;
+text-decoration: underline;
+border-style: solid;
+border-width: medium;
+border-color: #DDDDDD;
+
 }

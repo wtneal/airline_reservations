@@ -3,17 +3,16 @@
 <head>
     <meta charset=utf-8>
     <title>Customer Login</title>
-    <style>
-        input {
-            display:block;
-        }
-        .error {
-            color: red;
-        }
-    </style>
+	<script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
+    <link rel=stylesheet href={{ STATIC_URL }}css/logstyle.css type=text/css media=all>
 </head>
 <body>
-    <form action=/login method=post accept-charset=utf-8>
+	<a href="/">
+	<h1 class=logo>Django Travel</h1>
+	</a>
+	<div id="page">
+	<p class=table-label>Login</p>
+    <form action=/login method=post class=login accept-charset=utf-8>
         {% csrf_token %}
         {% if failed %}
             <p class=error>The password entered was incorrect. Try again.</p>
@@ -22,5 +21,6 @@
         <input type=password name=pword id=pword placeholder=Password> 
         <input type=submit value=login>
     </form>
+	</div>
 </body>
 </html>

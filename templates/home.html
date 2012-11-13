@@ -5,35 +5,32 @@
     <title>Home</title>
     <script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
     <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
+	<a href="/">
+	<h1 class=logo>Django Travel</h1>
+	<h3> Vacation like a rockstar </h3>
+	</a>
+	
 </head>
 <body>
-	<div id="page">
-	{% if reg == 1 %}
-		<p> Thanks for registering! </P>
-	{% endif %}
+	<div id="page2">
+	<table class=head-table>
+	<tr>
+	<td>
+		<a href="\">Home</a> | 
+		<a href="\bookflight">Find a Flight</a>
+	</td>
+	<td align="right">
+	{% if request.session.user %}
+        Logged in as {{ request.session.user.name }}.
+		<a href="/logout/">Log out?</a>
+		{% else %}
+		<a href="\login">Login</a> | 
+		<a href="\register">Register</a>
+		{% endif %}
+	</td>
 	
-    {% if request.session.user %}
-        <p>Logged in as {{ request.session.user.name }}.</p>
-		<p><a href="/logout/">Log out?</a></p>
-    {% else %}
-    <div class=login-form>
-        <form action=/confirm method=post accept-charset=utf-8>
-            {% csrf_token %}
-            {% if failed %}
-                <p class=error>The password entered was incorrect. Try again.</p>
-            {% endif %}
-            <input type=text name=user id=user placeholder="User Name">
-            <input type=password name=pword id=pword placeholder=Password> 
-            <input type=submit value=login>
-        </form>
-    </div>
-	<div class=register-form>
-        <form action=/register method=post accept-charset=utf-8>
-			{% csrf_token %}
-			<input type=submit value=Register>
-        </form>
-    </div> 
-	{% endif %}
+</tr></table>	
+	
     <div class=flight-listings>
         <p class=table-label>Domestic Flights</p>
         <table class=flights-table id=flights cellpadding=0 cellspacing=0>
@@ -43,6 +40,7 @@
                 <th>Arrival Date</th>
                 <th>Arrival Airport</th>
 				<th>Price</th>
+				<th>Book Flight</th>
             </tr>
             {% if not available_domestic_flights %}
                 <tr><td colspan=4 class=no-flights>No available domestic flights found.</td></tr>
@@ -54,7 +52,7 @@
                     <td class=table-gray>{{ f.arrival_time }}</td>
                     <td>{{ f.arrival_airport }}</td>
 					<td>${{ f.price }}</td>
-                    <td> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
+                    <td class=book-flight> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
 
                 </tr>
                 {% endfor %}
@@ -68,6 +66,7 @@
                 <th>Arrival Date</th>
                 <th>Arrival Airport</th>
 				<th>Price</th>
+				<th>Book Flight</th>
             </tr>
             {% if not available_international_flights %}
                 <tr><td colspan=4 no-flights>No available international flights found.</td><tr>
@@ -79,7 +78,7 @@
                     <td class=table-gray>{{ f.arrival_time }}</td>
                     <td>{{ f.arrival_airport }}</td>
 					<td>${{ f.price }}</td>
-                    <td> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
+                    <td class=book-flight> <a href="/bookflight/{{ f.id }}">Book Flight</a> </td>
                 </tr>
                 {% endfor %}
             {% endif %}
