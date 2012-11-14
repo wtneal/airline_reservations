@@ -81,12 +81,14 @@ def book_ticket(request, flight_id=None):
             request.session['referer'] = reverse('airline_reservations.views.book_ticket')
         return HttpResponseRedirect(reverse('airline_reservations.views.login'))
 
-    if request.POST:
+    if request.POST and request.POST.get('flight'):
         result = book_flight(request.session.get('user'), request.POST)
         if result:
             return HttpResponseRedirect(reverse('airline_reservations.views.ticket', args=(result,)))
         else:
             failed = True
+    else:
+        no_selection = True
 
     if flight_id:
         flight = AvailableFlight.objects.get(id=flight_id)

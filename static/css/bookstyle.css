@@ -1,0 +1,75 @@
+body {
+background: #333;
+font-family: arial,helvetica,sans-serif;
+font-size: 80%;
+}
+
+#page {
+margin: 0 auto;
+min-height: 100%;
+max-width: 1060px;
+min-width: 954px;
+position: relative;
+text-align: center;
+}
+
+div {
+display: block;
+background-color: white;
+margin-bottom: 9px;
+padding-bottom: 10px;
+border-width: 5px 1px 1px 1px;
+border-color: #AAAAAA;
+border-style: solid;
+}
+
+.flight-listings {
+padding: 4px;
+}
+.table-label {
+font-size: 20px;
+text-shadow: 2px 2px 5px #AAA;
+color: #666;
+font-weight: bold;
+}
+
+.flights-table {
+border: 1px solid #AAA;
+width: 100%;
+table-layout: fixed;
+}
+
+.table-gray {
+background-color: #DDD;
+}
+#flights th {
+font-size: 18px;
+padding-top: 5px;
+padding-bottom: 4px;
+background-color: #AAA;
+color: white;
+}
+
+th, td {
+padding: 4px;
+margin: 1px;
+text-align: center;
+}
+
+a {
+font-size: 15px;
+text-shadow: 2px 2px 5px #AAA;
+color: #666;
+text-decoration: none;
+font-weight: bold;
+}
+h1 {
+font-weight: bold;
+text-indent: 50px;
+color: white;
+
+}
+
+a:hover {
+color: #99C;
+}
