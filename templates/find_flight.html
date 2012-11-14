@@ -9,8 +9,26 @@
 <body>
 	<a href="/">
 	<h1 class=logo>Django Travel</h1>
+	<h4>Vacation like a rockstar</h4>
 	</a>
 <div class=page>
+	<table class=head-table>
+	<tr>
+	<td>
+		<a href="/">Home</a> | 
+		<a href="/bookflight">Find a Flight</a>
+	</td>
+	<td align="right">
+	{% if request.session.user %}
+        Logged in as {{ request.session.user.name }}.
+		<a href="/logout/">Log out?</a>
+		{% else %}
+		<a href="/login">Login</a> | 
+		<a href="/register">Register</a>
+		{% endif %}
+	</td>
+	
+</tr></table>
 <p class=table-label>Find a Flight</p>
 <form action=/bookflight method=get accept-charset=utf-8>
     <table class=flights-table id=flights cellpadding=0 cellspacing=0>
