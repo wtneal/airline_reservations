@@ -110,16 +110,15 @@ padding-bottom: 4px;
 font-weight: bold;
 }
 
-h1 {
+h1{
 font-weight: bold;
 text-indent: 50px;
 color: white;
 }
-h3 {
+h4 {
 font-weight: bold;
 text-indent: 50px;
-color: white;
-
+color: grey;
 }
 
 .book-flight{
