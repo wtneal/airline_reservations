@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 
+import datetime
+
 from airline_reservations.models import *
 
 ######################
@@ -87,8 +89,6 @@ def book_ticket(request, flight_id=None):
             return HttpResponseRedirect(reverse('airline_reservations.views.ticket', args=(result,)))
         else:
             failed = True
-    else:
-        no_selection = True
 
     if flight_id:
         flight = AvailableFlight.objects.get(id=flight_id)
@@ -180,9 +180,26 @@ def get_available_flights(is_international, get_vars=None):
             flights = flights.filter(departure_airport=get_vars.get('from'))
         if get_vars.get('to'):
             flights = flights.filter(arrival_airport=get_vars.get('to'))
-        # TODO date comparisions
-        #if get_vars.get('booking_date'):
-        #    flights = flights.filter(departure_time=get_vars.get('booking_date'))
+        if get_vars.get('booking_date'):
+            # try to parse the date
+            try:
+                m, d, y  = get_vars.get('booking_date').split('/')
+                if 0 < int(m) < 13:
+                    month = int(m)
+                else:
+                    raise ValueError
+                if 0 < int(d) < 31:
+                    day = int(d)
+                else:
+                    raise ValueError
+                if 0 < int(y) < 2050:
+                    year = int(y)
+                else:
+                    raise ValueError
+                flights = flights.filter(departure_time__gte=datetime.datetime(year, month, day))
+            except ValueError:
+                pass
+
         if get_vars.get('seat_type'):
             flights = flights.filter(seat_type=get_vars.get('seat_type'))
         return flights
