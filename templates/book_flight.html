@@ -4,7 +4,7 @@
     <meta charset=utf-8 />
     <title>Book Flight</title>
 	<script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
-    <link rel=stylesheet href={{ STATIC_URL }}css/bookstyle.css type=text/css media=all>
+    <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
 </head>
 <body>
 <<<<<<< HEAD
@@ -33,6 +33,8 @@
 		<a href="/register">Register</a>
 		{% endif %}
 	</td>
+	
+</tr></table>
 	
 	<form action=/bookflight method=post accept-charset=utf-8>
 	{% csrf_token %}

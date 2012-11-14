@@ -5,13 +5,30 @@
     <title>User Register</title>
     <script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
     <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
-	<a href="/">
-	<h1 class=logo>Django Travel</h1>
-	</a>
 </head>
 
 <body>
+	<a href="/">
+	<h1 class=logo>Django Travel</h1>
+	</a>
 	<div id="register">
+		<table class=head-table>
+		<tr>
+		<td>
+			<a href="/">Home</a> | 
+			<a href="/bookflight">Find a Flight</a>
+		</td>
+		<td align="right">
+		{% if request.session.user %}
+			Logged in as {{ request.session.user.name }}.
+			<a href="/logout/">Log out?</a>
+			{% else %}
+			<a href="/login">Login</a> | 
+			<a href="/register">Register</a>
+			{% endif %}
+		</td>
+		
+	</tr></table>
 		<h2> New User Registration </h2>
 		{% if failed %}
 			<p class=register-error> Please enter your info! </p>
