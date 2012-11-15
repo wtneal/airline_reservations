@@ -35,7 +35,6 @@ def home(request, reg = None):
                                context_instance=RequestContext(request))
 
 def ticket(request, booking_id):
-	
     ticket_info = Booking.objects.get(id = booking_id)
     return render_to_response('ticket.html', locals())
 
@@ -138,6 +137,7 @@ def book_flight(customer, form_fields):
     """Book the flights
     returns id of the booked flight if the booking was successful
     """
+    adults, children, infants = [0] * 3
     if form_fields.get('flight'):
         flight = AvailableFlight.objects.get(id=form_fields.get('flight'))
     if form_fields.get('adults'):
@@ -146,7 +146,9 @@ def book_flight(customer, form_fields):
         children = form_fields.get('children')
     if form_fields.get('infants'):
         infants = form_fields.get('infants')
-    b = Booking(customer=customer, flight=flight, adults=adults, children=children, infants=infants)
+
+    booking_price = flight.price * adults + flight.price * children + flight.price * infants
+    b = Booking(customer=customer, flight=flight, adults=adults, children=children, infants=infants, bookprice=booking_price)
     b.save()
     return b.id
 
