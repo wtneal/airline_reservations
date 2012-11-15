@@ -53,7 +53,7 @@ class Booking(models.Model):
     adults = models.IntegerField()
     children = models.IntegerField()
     infants = models.IntegerField()
-    bookprice = models.DecimalField(decimal_places=2, max_digits=8)
+    bookprice = models.DecimalField(decimal_places=2, max_digits=8, default=0.0)
 
     def __unicode__(self):
         return "From {0} To {1}".format(self.customer, self.flight)
