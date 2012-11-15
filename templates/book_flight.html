@@ -1,37 +1,7 @@
-<!DOCTYPE HTML>
-<html lang=en>
-<head>
-    <meta charset=utf-8 />
-    <title>Book Flight</title>
-	<script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
-    <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
-</head>
-<body>
-	<a href="/">
-	<h1 class=logo>Django Travel</h1>
-	<h4>Vacation like a rockstar</h4>
-	</a>
-	
-	<div id=page2>
-	<table class=head-table>
-	<tr>
-	<td>
-		<a href="/">Home</a> | 
-		<a href="/bookflight">Find a Flight</a>
-	</td>
-	<td align="right">
-	{% if request.session.user %}
-        Logged in as {{ request.session.user.name }}.
-		<a href="/logout/">Log out?</a>
-		{% else %}
-		<a href="/login">Login</a> | 
-		<a href="/register">Register</a>
-		{% endif %}
-	</td>
-	
-</tr></table>
-	
-	<form action=/bookflight method=post accept-charset=utf-8>
+{% extends "page_base.html" %}
+{% block title %} Book Flight {% endblock %}
+{% block content %}
+<form action=/bookflight method=post accept-charset=utf-8>
 	{% csrf_token %}
 	<input type=hidden name=flight value={{ flight.id }}>
 	<p class=table-label>Flight Booking</p>
@@ -81,7 +51,5 @@
 	</tr>
 	</table>
     <align=center><input type=submit name=book id=book value="Book Flight"></align>
-	</form>
-	</div>
-</body>
-</html>
+</form>
+{% endblock %}

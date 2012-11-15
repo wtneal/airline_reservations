@@ -1,122 +1,95 @@
-<!DOCTYPE HTML>
-<html lang=en>
-<head>
-    <meta charset=utf-8 />
-    <title>Find Flight</title>
-	<script src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
-    <link rel=stylesheet href={{ STATIC_URL }}css/style.css type=text/css media=all>
-</head>
-<body>
-	<a href="/">
-	<h1 class=logo>Django Travel</h1>
-	<h4>Vacation like a rockstar</h4>
-	</a>
-<div class=page>
-	<table class=head-table>
-	<tr>
-	<td>
-		<a href="/">Home</a> | 
-		<a href="/bookflight">Find a Flight</a>
-	</td>
-	<td align="right">
-	{% if request.session.user %}
-        Logged in as {{ request.session.user.name }}.
-		<a href="/logout/">Log out?</a>
-		{% else %}
-		<a href="/login">Login</a> | 
-		<a href="/register">Register</a>
-		{% endif %}
-	</td>
-	
-</tr></table>
-<p class=table-label>Find a Flight</p>
-<form action=/bookflight method=get accept-charset=utf-8>
-    <table class=flights-table id=flights cellpadding=0 cellspacing=0>
-	<tr>
-	<td class=table-gray>
-	<label>
-        From:
-        <select name=from id=from>
-            <option value>Select One</option>            
-            {% for airport in airports %}
-            <option value={{ airport.id }} {% if request.GET.from == airport.id|stringformat:"s" %}selected{% endif %} >
-                {{ airport }}
-            </option>            
-            {% endfor %}
-        </select>
-    </label>
-    <label>
-        To:
-        <select name=to id=to>
-            <option value>Select One</option>            
-            {% for airport in airports %}
-            <option value={{ airport.id }} {% if request.GET.to == airport.id|stringformat:"s" %}selected{% endif %} >
-                {{ airport }}
-            </option>            
-            {% endfor %}
-        </select>
-    </label>
-    <label>
-        Booking Date:
-        <input type=text name=booking_date id=booking-date value={{ request.GET.booking_date }}>
-    </label>
-    <label>
-        Class:
-        <select name=seat_type id=seat-type>
-            <option value>Select One</option>            
-            {% for class in classes %}
-            <option value={{ class.id }} {% if request.GET.seat_type == class.id|stringformat:"s" %}selected{% endif %} >
-                {{ class }}
-            </option>            
-            {% endfor %}
-        </select>
-    </label>
-    <input type=submit name=find id=find value="Find Flight">
-</form>
-{% if flights %}
-<form action=/bookflight method=post accept-charset=utf-8>
-    {% csrf_token %}
-    <ul class=flight-list>
-    {% for flight in flights %}
-        <li><label><input type=radio name=flight id=flight-{{ flight.id }} value={{ flight.id }}> {{ flight }}</label></li>
-    {% endfor %}
-    </ul>
-    <label>
-        Adults (12+)
-        <select name=adults id=adults>
-            <option value=1>1</option>    
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-        </select>
-    </label>
-    <label>
-        Children (2-11)
-        <select name=children id=children>
-            <option value=0>0</option>    
-            <option value=1>1</option>    
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-        </select>
-    </label>
-    <label>
-        Infants (Under 2)
-        <select name=infants id=infants>
-            <option value=0>0</option>    
-            <option value=1>1</option>    
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-        </select>
-    </label>
-    <input type=submit name=book id=book value="Book Flight" />
-	</td></tr></table>
-	</form>
-{% else %}
-    <p>Sorry, but no flights were found that matched your search criteria.</p>
-{% endif %}
-</body>
-</html>
+{% extends "page_base.html" %}
+{% block title %} Book Flight {% endblock %}
+{% block content %}
+    <p class=table-label>Find a Flight</p>
+    <form action=/bookflight method=get accept-charset=utf-8>
+        <table class=flights-table id=flights cellpadding=0 cellspacing=0>
+        <tr>
+        <td class=table-gray>
+        <label>
+            From:
+            <select name=from id=from>
+                <option value>Select One</option>            
+                {% for airport in airports %}
+                <option value={{ airport.id }} {% if request.GET.from == airport.id|stringformat:"s" %}selected{% endif %} >
+                    {{ airport }}
+                </option>            
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            To:
+            <select name=to id=to>
+                <option value>Select One</option>            
+                {% for airport in airports %}
+                <option value={{ airport.id }} {% if request.GET.to == airport.id|stringformat:"s" %}selected{% endif %} >
+                    {{ airport }}
+                </option>            
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Booking Date:
+            <input type=text name=booking_date id=booking-date value={{ request.GET.booking_date }}>
+        </label>
+        <label>
+            Class:
+            <select name=seat_type id=seat-type>
+                <option value>Select One</option>            
+                {% for class in classes %}
+                <option value={{ class.id }} {% if request.GET.seat_type == class.id|stringformat:"s" %}selected{% endif %} >
+                    {{ class }}
+                </option>            
+                {% endfor %}
+            </select>
+        </label>
+        <input type=submit name=find id=find value="Find Flight">
+    </form>
+    {% if flights %}
+    <form action=/bookflight method=post accept-charset=utf-8>
+        {% csrf_token %}
+        <ul class=flight-list>
+        {% for flight in flights %}
+            <li><label><input type=radio name=flight id=flight-{{ flight.id }} value={{ flight.id }}> {{ flight }}</label></li>
+        {% endfor %}
+        </ul>
+        <label>
+            Adults (12+)
+            <select name=adults id=adults>
+                <option value=1>1</option>    
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+            </select>
+        </label>
+        <label>
+            Children (2-11)
+            <select name=children id=children>
+                <option value=0>0</option>    
+                <option value=1>1</option>    
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+            </select>
+        </label>
+        <label>
+            Infants (Under 2)
+            <select name=infants id=infants>
+                <option value=0>0</option>    
+                <option value=1>1</option>    
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+            </select>
+        </label>
+        <input type=submit name=book id=book value="Book Flight" />
+        </td></tr></table>
+        </form>
+    {% else %}
+        {% if request.POST %}
+            <p>Sorry, but no flights were found that matched your search criteria.</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}
